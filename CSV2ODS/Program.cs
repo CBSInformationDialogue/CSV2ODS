@@ -20,27 +20,27 @@ namespace TryCSV2ODSConvertion
             // Constant row count limit
             int MAX_ROW_COUNT = 1048576;
 
-            //// Split the large csv file
-            //foreach (string csvFile in csvFiles)
-            //{
-            //    using (StreamReader stReader = new StreamReader(csvFile))
-            //    {
-            //        int fileIndex = 0;
+            // Split the large csv file
+            foreach (string csvFile in csvFiles)
+            {
+                using (StreamReader stReader = new StreamReader(csvFile))
+                {
+                    int fileIndex = 0;
 
-            //        while (!stReader.EndOfStream)
-            //        {
-            //            int count = 0;
-            //            using (StreamWriter stWriter = new StreamWriter(Path.Combine(tempDir, fileIndex++ + Path.GetFileName(csvFile))))
-            //            {
-            //                stWriter.AutoFlush = true;
-            //                while (!stReader.EndOfStream && ++count < MAX_ROW_COUNT)
-            //                {
-            //                    stWriter.WriteLine(stReader.ReadLine());
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+                    while (!stReader.EndOfStream)
+                    {
+                        int count = 0;
+                        using (StreamWriter stWriter = new StreamWriter(Path.Combine(tempDir, fileIndex++ + Path.GetFileName(csvFile))))
+                        {
+                            stWriter.AutoFlush = true;
+                            while (!stReader.EndOfStream && ++count < MAX_ROW_COUNT)
+                            {
+                                stWriter.WriteLine(stReader.ReadLine());
+                            }
+                        }
+                    }
+                }
+            }
 
             // Convert smaller temp csv files
             string[] inputCSVs = Directory.GetFiles(tempDir, "*.csv");
